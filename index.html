@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+<title>3H DONAT & BAKERY - 3D Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);overflow-x:hidden;min-height:100vh}
+
+/* ========== ROOT VARIABLES ========== */
+:root{
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --accent: #ffb347;
+  --accent-dark: #ff7b00;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --shadow-sm: 0 5px 15px rgba(0,0,0,0.1);
+  --shadow-md: 0 10px 25px rgba(0,0,0,0.2);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.3);
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-full: 50px;
+}
+
+/* ========== NAVBAR RESPONSIF ========== */
+nav{
+position:fixed;
+width:100%;
+padding:12px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,0.2);
+color:white;
+z-index:1000;
+animation:slideDown 0.8s ease
+}
+@keyframes slideDown{
+from{transform:translateY(-100%)}
+to{transform:translateY(0)}
+}
+nav h2{
+font-size:clamp(18px, 4vw, 28px);
+font-weight:800;
+text-transform:uppercase;
+background:linear-gradient(45deg,#fff,var(--accent));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+letter-spacing:1px;
+white-space:nowrap
+}
+nav button{
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.3);
+padding:8px 16px;
+border-radius:var(--radius-full);
+cursor:pointer;
+font-weight:600;
+color:white;
+font-size:clamp(14px, 3vw, 16px);
+box-shadow:var(--shadow-sm);
+transition:all 0.3s ease;
+display:flex;
+align-items:center;
+gap:6px;
+white-space:nowrap
+}
+nav button:hover{
+background:rgba(255,255,255,0.3);
+transform:translateY(-2px);
+box-shadow:var(--shadow-md)
+}
+nav button i{
+font-size:clamp(14px, 3vw, 18px)
+}
+
+/* ========== HERO RESPONSIF ========== */
+.hero{
+min-height:80vh;
+height:auto;
+padding:80px 5% 40px;
+position:relative;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);
+background-size:400% 400%;
+animation:gradientBG 15s ease infinite
+}
+@keyframes gradientBG{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+.hero-canvas{
+position:absolute;
+top:0;left:0;
+width:100%;height:100%;
+z-index:1;
+opacity:0.3;
+pointer-events:none
+}
+.hero-content{
+position:relative;
+z-index:10;
+max-width:900px;
+width:100%;
+padding:20px
+}
+.hero h1{
+font-size:clamp(40px, 10vw, 90px);
+font-weight:800;
+text-transform:uppercase;
+margin-bottom:15px;
+line-height:1.1;
+animation:zoomIn 1s ease
+}
+@keyframes zoomIn{
+from{opacity:0;transform:scale(0.5)}
+to{opacity:1;transform:scale(1)}
+}
+.hero h1 span{
+display:block;
+font-size:clamp(24px, 5vw, 50px);
+background:linear-gradient(45deg,var(--accent),var(--accent-dark));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 3s ease-in-out infinite
+}
+.hero p{
+font-size:clamp(14px, 3vw, 20px);
+margin-bottom:30px;
+opacity:0.9;
+animation:fadeInUp 1s ease 0.3s both;
+padding:0 10px
+}
+@keyframes fadeInUp{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
+}
+.hero-buttons{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+animation:fadeInUp 1s ease 0.6s both
+}
+.hero-btn{
+padding:12px 25px;
+border-radius:var(--radius-full);
+font-weight:600;
+font-size:clamp(14px, 3vw, 18px);
+cursor:pointer;
+transition:all 0.3s ease;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:8px;
+border:none;
+white-space:nowrap
+}
+.hero-btn-primary{
+background:linear-gradient(45deg,var(--accent),var(--accent-dark));
+color:white;
+box-shadow:0 10px 20px rgba(255,123,0,0.3)
+}
+.hero-btn-primary:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(255,123,0,0.5)
+}
+.hero-btn-secondary{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.3);
+color:white
+}
+.hero-btn-secondary:hover{
+background:rgba(255,255,255,0.2);
+transform:translateY(-3px)
+}
+.floating-donut{
+position:absolute;
+font-size:clamp(80px, 15vw, 150px);
+opacity:0.1;
+animation:float 15s ease-in-out infinite;
+z-index:2;
+pointer-events:none
+}
+@keyframes float{
+0%,100%{transform:translateY(0) rotate(0deg)}
+33%{transform:translateY(-30px) rotate(120deg)}
+66%{transform:translateY(20px) rotate(240deg)}
+}
+.donut1{top:5%;left:2%;animation-delay:0s}
+.donut2{bottom:5%;right:2%;animation-delay:2s}
+.donut3{top:30%;right:5%;animation-delay:4s}
+
+/* ========== PRODUCT SECTION RESPONSIF ========== */
+section{
+padding:60px 5%;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+clip-path:polygon(0 3%,100% 0,100% 97%,0 100%);
+position:relative;
+z-index:10
+}
+.section-title{
+text-align:center;
+margin-bottom:40px
+}
+.section-title h2{
+font-size:clamp(28px, 6vw, 40px);
+background:linear-gradient(45deg,var(--primary),var(--secondary));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:10px
+}
+.section-title p{
+color:#666;
+font-size:clamp(14px, 3vw, 18px);
+padding:0 15px
+}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+gap:30px;
+max-width:1400px;
+margin:0 auto;
+padding:0 10px
+}
+
+/* ========== 3D CARDS RESPONSIF ========== */
+.card{
+background:white;
+border-radius:var(--radius-md);
+overflow:hidden;
+box-shadow:var(--shadow-lg);
+transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position:relative;
+height:auto;
+min-height:480px;
+display:flex;
+flex-direction:column;
+transform-style:preserve-3d;
+transform:perspective(1000px) rotateX(0deg) rotateY(0deg);
+animation:cardAppear 0.8s ease;
+border:1px solid rgba(255,255,255,0.1)
+}
+@keyframes cardAppear{
+from{opacity:0;transform:perspective(1000px) rotateX(10deg) translateY(30px)}
+to{opacity:1;transform:perspective(1000px) rotateX(0) translateY(0)}
+}
+.card:hover{
+transform:perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-10px) scale(1.02);
+box-shadow:0 30px 50px rgba(0,0,0,0.4), 0 0 0 3px rgba(255,180,0,0.3)
+}
+.card:active{
+transform:scale(0.98)
+}
+
+/* Efek 3D Shadow */
+.card::before{
+content:'';
+position:absolute;
+top:0;left:0;
+right:0;bottom:0;
+border-radius:var(--radius-md);
+background:linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+z-index:10;
+pointer-events:none;
+opacity:0;
+transition:opacity 0.4s
+}
+.card:hover::before{
+opacity:1
+}
+
+/* Efek Glow */
+.card::after{
+content:'';
+position:absolute;
+inset:-2px;
+border-radius:22px;
+background:linear-gradient(45deg, var(--accent), var(--accent-dark), var(--primary), var(--secondary));
+background-size:300% 300%;
+z-index:-1;
+animation:borderGlow 6s ease infinite;
+opacity:0;
+transition:opacity 0.4s
+}
+.card:hover::after{
+opacity:1
+}
+@keyframes borderGlow{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-bottom:3px solid var(--primary);
+transition:transform 0.5s ease;
+transform:translateZ(15px);
+position:relative;
+z-index:5
+}
+.card:hover img{
+transform:scale(1.05) translateZ(20px)
+}
+
+.card-content{
+padding:15px 20px 20px;
+background:white;
+flex:1;
+display:flex;
+flex-direction:column;
+position:relative;
+z-index:5;
+transform:translateZ(10px)
+}
+.card-content h3{
+font-size:clamp(16px, 4vw, 18px);
+margin-bottom:5px;
+color:var(--text-dark);
+font-weight:700;
+line-height:1.3
+}
+.price{
+color:var(--accent-dark);
+font-weight:800;
+font-size:clamp(20px, 5vw, 24px);
+margin-bottom:10px;
+text-shadow:2px 2px 4px rgba(255,123,0,0.2)
+}
+
+/* QTY CONTROL RESPONSIF */
+.qty-control{
+display:flex;
+align-items:center;
+justify-content:center;
+margin:15px 0;
+background:#f5f5f5;
+border-radius:var(--radius-full);
+padding:5px;
+width:fit-content;
+align-self:center;
+box-shadow:var(--shadow-sm)
+}
+.qty-control button{
+width:clamp(35px, 8vw, 40px);
+height:clamp(35px, 8vw, 40px);
+border:none;
+background:linear-gradient(145deg,var(--primary),var(--secondary));
+color:white;
+font-size:clamp(18px, 4vw, 20px);
+font-weight:bold;
+cursor:pointer;
+border-radius:50%;
+box-shadow:0 5px 10px rgba(102,126,234,0.3);
+transition:all 0.2s ease;
+display:flex;
+align-items:center;
+justify-content:center;
+-webkit-tap-highlight-color:transparent
+}
+.qty-control button:hover{
+transform:scale(1.1);
+box-shadow:0 8px 15px rgba(102,126,234,0.5)
+}
+.qty-control button:active{
+transform:scale(0.9)
+}
+.qty-control span{
+margin:0 12px;
+font-weight:700;
+font-size:clamp(18px, 4vw, 20px);
+min-width:30px;
+text-align:center;
+color:var(--text-dark)
+}
+
+/* ADD TO CART BUTTON RESPONSIF */
+.add-cart{
+width:100%;
+padding:12px 10px;
+border:none;
+background:linear-gradient(45deg,#25D366,#128C7E);
+color:white;
+border-radius:var(--radius-full);
+cursor:pointer;
+font-weight:700;
+font-size:clamp(14px, 3.5vw, 16px);
+box-shadow:0 5px 15px rgba(37,211,102,0.3);
+transition:all 0.3s ease;
+margin-top:5px;
+position:relative;
+overflow:hidden;
+transform:translateZ(15px);
+-webkit-tap-highlight-color:transparent
+}
+.add-cart i{
+margin-right:8px;
+font-size:clamp(14px, 3vw, 16px)
+}
+.add-cart:hover{
+transform:translateY(-3px) translateZ(20px);
+box-shadow:0 12px 25px rgba(37,211,102,0.5)
+}
+.add-cart:active{
+transform:scale(0.95)
+}
+
+/* Badge 3D */
+.badge-3d{
+position:absolute;
+top:10px;
+left:10px;
+background:linear-gradient(45deg,var(--accent),var(--accent-dark));
+color:white;
+padding:5px 12px;
+border-radius:var(--radius-full);
+font-size:12px;
+font-weight:600;
+box-shadow:var(--shadow-md);
+z-index:20;
+transform:translateZ(30px);
+animation:pulse 2s ease-in-out infinite
+}
+@keyframes pulse{
+0%,100%{transform:translateZ(30px) scale(1)}
+50%{transform:translateZ(30px) scale(1.05)}
+}
+
+/* ========== CART SIDEBAR RESPONSIF ========== */
+.cart{
+position:fixed;
+right:-100%;
+top:0;
+width:min(90%, 380px);
+height:100%;
+background:rgba(255,255,255,0.98);
+backdrop-filter:blur(10px);
+box-shadow:-5px 0 30px rgba(0,0,0,0.2);
+padding:20px;
+transition:right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+overflow-y:auto;
+z-index:2000;
+border-left:3px solid var(--primary)
+}
+.cart.active{right:0}
+
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+padding-bottom:10px;
+border-bottom:3px solid var(--accent);
+position:sticky;
+top:0;
+background:white;
+z-index:10
+}
+.cart-header h3{
+font-size:clamp(18px, 4vw, 20px);
+background:linear-gradient(45deg,var(--primary),var(--secondary));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent
+}
+.close-cart{
+background:none;
+border:none;
+font-size:28px;
+cursor:pointer;
+color:var(--accent-dark);
+width:40px;
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+transition:.3s;
+-webkit-tap-highlight-color:transparent
+}
+.close-cart:hover{
+background:var(--accent-dark);
+color:white;
+transform:rotate(90deg)
+}
+.close-cart:active{
+transform:scale(0.9)
+}
+
+.cart-item{
+margin-bottom:15px;
+border-bottom:1px solid #ddd;
+padding-bottom:10px;
+animation:slideIn 0.3s ease
+}
+@keyframes slideIn{
+from{opacity:0;transform:translateX(20px)}
+to{opacity:1;transform:translateX(0)}
+}
+.total{
+font-weight:700;
+margin:15px 0;
+font-size:clamp(18px, 4vw, 20px);
+color:var(--primary)
+}
+.checkout{
+width:100%;
+padding:15px;
+background:linear-gradient(45deg,var(--accent-dark),#ff9933);
+color:white;
+border:none;
+border-radius:var(--radius-full);
+cursor:pointer;
+font-weight:600;
+font-size:clamp(16px, 4vw, 18px);
+box-shadow:0 5px 15px rgba(255,123,0,0.3);
+transition:all 0.3s ease;
+-webkit-tap-highlight-color:transparent
+}
+.checkout:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(255,123,0,0.5)
+}
+.checkout:active{
+transform:scale(0.95)
+}
+input,textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:2px solid #e0e0e0;
+border-radius:var(--radius-md);
+transition:all 0.3s ease;
+font-size:clamp(14px, 3.5vw, 16px);
+-webkit-appearance:none
+}
+input:focus,textarea:focus{
+border-color:var(--primary);
+outline:none;
+box-shadow:0 0 0 3px rgba(102,126,234,0.2)
+}
+
+/* ========== FLOATING SOCIAL RESPONSIF ========== */
+.floating-social{
+position:fixed;
+bottom:15px;
+right:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:1500
+}
+.social-btn{
+width:clamp(45px, 10vw, 55px);
+height:clamp(45px, 10vw, 55px);
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:clamp(20px, 5vw, 26px);
+cursor:pointer;
+box-shadow:var(--shadow-md);
+transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position:relative;
+overflow:hidden;
+-webkit-tap-highlight-color:transparent
+}
+.social-btn:active{
+transform:scale(0.9)
+}
+.social-btn:hover{
+transform:scale(1.1) translateY(-3px);
+box-shadow:var(--shadow-lg)
+}
+.social-btn.instagram{background:linear-gradient(45deg,#f09433,#d62976,#962fbf,#4f5bd5)}
+.social-btn.tiktok{background:#000000}
+.social-btn.facebook{background:#1877f2}
+.social-btn.whatsapp{background:#25D366}
+
+/* ========== BRANDING FOOTER RESPONSIF ========== */
+.branding-footer{
+text-align:center;
+padding:40px 5%;
+background:linear-gradient(135deg,#1a1a2e,#16213e);
+color:white;
+margin-top:0;
+clip-path:polygon(0 5%,100% 0,100% 100%,0 100%)
+}
+.branding-footer h3{
+font-size:clamp(24px, 5vw, 32px);
+margin-bottom:15px;
+text-shadow:0 5px 15px rgba(0,0,0,0.3)
+}
+.branding-footer p{
+font-size:clamp(14px, 3vw, 16px);
+opacity:0.9;
+padding:0 15px
+}
+.social-links{
+display:flex;
+justify-content:center;
+gap:clamp(15px, 4vw, 25px);
+margin:20px 0;
+flex-wrap:wrap
+}
+.social-links a{
+color:white;
+font-size:clamp(28px, 6vw, 36px);
+transition:.3s;
+filter:drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+-webkit-tap-highlight-color:transparent
+}
+.social-links a:hover{
+transform:scale(1.2) rotate(5deg);
+color:var(--accent)
+}
+.social-links a:active{
+transform:scale(0.9)
+}
+.copyright{
+margin-top:20px;
+font-size:clamp(12px, 2.5vw, 14px);
+opacity:0.8;
+line-height:1.6
+}
+
+/* ========== UTILITY CLASSES ========== */
+.empty-cart{
+text-align:center;
+color:#999;
+padding:30px 20px;
+font-style:italic;
+font-size:clamp(14px, 3.5vw, 16px)
+}
+#saveStatus{
+margin-top:15px;
+padding:10px;
+border-radius:var(--radius-md);
+font-size:clamp(13px, 3vw, 14px);
+text-align:center;
+transition:all 0.3s
+}
+
+/* ========== MEDIA QUERIES KHUSUS ========== */
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px){
+  .products{
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px
+  }
+  .card{
+    min-height:460px
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape){
+  .hero{
+    min-height:100vh;
+    padding:100px 5% 60px
+  }
+  .products{
+    grid-template-columns:repeat(2, 1fr);
+    gap:15px
+  }
+  .card{
+    min-height:420px
+  }
+  .card img{
+    height:150px
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px){
+  .hero-buttons{
+    flex-direction:column;
+    gap:10px
+  }
+  .hero-btn{
+    width:100%;
+    justify-content:center
+  }
+  .floating-social{
+    bottom:10px;
+    right:10px;
+    gap:8px
+  }
+  .social-btn{
+    width:40px;
+    height:40px;
+    font-size:18px
+  }
+  .cart{
+    width:100%;
+    right:-100%
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse){
+  .card:hover{
+    transform:none
+  }
+  .card:active{
+    transform:scale(0.98)
+  }
+  .add-cart:hover{
+    transform:none
+  }
+  .add-cart:active{
+    transform:scale(0.95)
+  }
+  .social-btn:hover{
+    transform:none
+  }
+  .social-btn:active{
+    transform:scale(0.9)
+  }
+}
+
+/* High Refresh Rate Screens */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark){
+  body{
+    background:linear-gradient(135deg,#2d3748,#1a202c)
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav>
+<h2>🍩 3H DONAT</h2>
+<button onclick="toggleCart()">
+<i class="fas fa-shopping-cart"></i>
+<span>Keranjang</span>
+<span id="cartCount">0</span>
+</button>
+</nav>
+
+<!-- ========== HERO SPECTACULAR ========== -->
+<div class="hero">
+  <div class="floating-donut donut1">🍩</div>
+  <div class="floating-donut donut2">🍩</div>
+  <div class="floating-donut donut3">🍩</div>
+  
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  
+  <div class="hero-content">
+    <h1>
+      3H DONAT
+      <span>& BAKERY</span>
+    </h1>
+    <p>✨ Pengalaman Donat 3D yang Belum Pernah Anda Rasakan ✨</p>
+    <div class="hero-buttons">
+      <button class="hero-btn hero-btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        <i class="fas fa-donut"></i> Lihat Menu
+      </button>
+      <button class="hero-btn hero-btn-secondary" onclick="window.open('https://wa.me/6285249447820', '_blank')">
+        <i class="fab fa-whatsapp"></i> Chat Admin
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRODUCT SECTION ========== -->
+<section>
+  <div class="section-title">
+    <h2>Menu 3D Kami</h2>
+    <p>Tekan dan tahan card untuk melihat efek 3D! 📱</p>
+  </div>
+  <div class="products" id="products"></div>
+</section>
+
+<!-- ========== SHOPPING CART ========== -->
+<div class="cart" id="cart">
+<div class="cart-header">
+<h3>🛒 Keranjang Belanja</h3>
+<button class="close-cart" onclick="toggleCart()">×</button>
+</div>
+
+<div id="cartItems">
+<div class="empty-cart">Keranjang masih kosong</div>
+</div>
+
+<p class="total">Total: Rp <span id="totalPrice">0</span></p>
+
+<input type="text" id="nama" placeholder="Nama Lengkap (Wajib)" inputmode="text">
+<input type="tel" id="noHp" placeholder="Nomor HP/WhatsApp (Wajib)" inputmode="numeric">
+<textarea id="alamat" placeholder="Alamat Lengkap (Wajib)" rows="2" inputmode="text"></textarea>
+<textarea id="catatan" placeholder="Catatan Tambahan (Opsional)" rows="2" inputmode="text"></textarea>
+
+<button class="checkout" onclick="processOrder()">✨ Proses Pesanan ✨</button>
+<div id="saveStatus"></div>
+</div>
+
+<!-- ========== FLOATING SOCIAL ========== -->
+<div class="floating-social">
+  <div class="social-btn whatsapp" onclick="window.open('https://wa.me/6285249447820', '_blank')" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </div>
+  <div class="social-btn instagram" onclick="window.open('https://instagram.com/3hdonatbakery', '_blank')" title="Instagram">
+    <i class="fab fa-instagram"></i>
+  </div>
+  <div class="social-btn tiktok" onclick="window.open('https://tiktok.com/@3hdonatbakery', '_blank')" title="TikTok">
+    <i class="fab fa-tiktok"></i>
+  </div>
+  <div class="social-btn facebook" onclick="window.open('https://facebook.com/3hdonatbakery', '_blank')" title="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </div>
+</div>
+
+<!-- ========== BRANDING FOOTER ========== -->
+<div class="branding-footer">
+  <h3>🍩 3H DONAT & BAKERY 3D</h3>
+  <p>Pengalaman Belanja Donat dalam Dimensi Baru</p>
+  
+  <div class="social-links">
+    <a href="https://instagram.com/3hdonatbakery" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com/@3hdonatbakery" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/3hdonatbakery" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://wa.me/6285249447820" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  
+  <p class="copyright">
+    © 2026 3H DONAT & BAKERY 3D | All rights reserved<br>
+    Jl. Donat 3D No. 123, Jakarta | Telp: 0852-4944-7820
+  </p>
+</div>
+
+<script>
+// ========== CANVAS ANIMATION (OPTIMIZED) ==========
+const canvas = document.getElementById('heroCanvas');
+if(canvas){
+  const ctx = canvas.getContext('2d');
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  
+  // Kurangi jumlah particle untuk performa mobile
+  const particleCount = width < 768 ? 30 : (width < 1024 ? 50 : 80);
+  
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = Math.random() * 2 + 1;
+      this.speedX = (Math.random() * 1 - 0.5) * (width < 768 ? 0.5 : 1);
+      this.speedY = (Math.random() * 1 - 0.5) * (width < 768 ? 0.5 : 1);
+      this.color = `rgba(255, 180, 0, ${Math.random() * 0.2})`;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if(this.x > width) this.x = 0;
+      if(this.x < 0) this.x = width;
+      if(this.y > height) this.y = 0;
+      if(this.y < 0) this.y = height;
+    }
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  
+  const particles = [];
+  for(let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+  
+  function animateParticles() {
+    ctx.clearRect(0, 0, width, height);
+    for(let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+  
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  });
+}
+
+// ========== DATA PRODUK ==========
+const products = [
+  { name: 'Donat Coklat Classic', price: 8000, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff', desc: 'Donat coklat klasik dengan topping coklat premium' },
+  { name: 'Donat Coklat Keju', price: 9000, image: 'https://images.unsplash.com/photo-1551024601-bec78aea704b', desc: 'Perpaduan coklat dan keju yang lezat' },
+  { name: 'Donat Coklat Sprinkle', price: 8500, image: 'https://images.unsplash.com/photo-1617305855058-336d24456869', desc: 'Donat dengan taburan sprinkle warna-warni' },
+  { name: 'Donat Coklat Almond', price: 10000, image: 'https://images.unsplash.com/photo-1587409977662-9eeeb20b7c8e', desc: 'Donat dengan topping almond crunch' },
+  { name: 'Donat Coklat Double', price: 9500, image: 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7', desc: 'Double coklat dengan filling lumer' },
+  { name: 'Donat Coklat Glaze', price: 8000, image: 'https://images.unsplash.com/photo-1551106652-a5bcf4b29ab6', desc: 'Donat glaze klasik yang lembut' },
+  { name: 'Roti Kopi Original', price: 12000, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff', desc: 'Roti kopi original aroma khas' },
+  { name: 'Roti Kopi Coklat', price: 13000, image: 'https://images.unsplash.com/photo-1544616326-f7c6c5bfc79a', desc: 'Roti kopi dengan filling coklat' },
+  { name: 'Roti Kopi Keju', price: 13000, image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec', desc: 'Roti kopi dengan keju melted' },
+  { name: 'Roti Kaya Original', price: 7000, image: 'https://images.unsplash.com/photo-1568254183919-78a4f43a2877', desc: 'Roti kaya tradisional' },
+  { name: 'Roti Kaya Butter', price: 8000, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff', desc: 'Roti kaya dengan butter' },
+  { name: 'Roti Kaya Pandan', price: 7500, image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec', desc: 'Roti kaya aroma pandan' }
+];
+
+// ========== RENDER PRODUK ==========
+function renderProducts() {
+  const container = document.getElementById('products');
+  if(!container) return;
+  
+  container.innerHTML = products.map((product, index) => `
+    <div class="card" style="animation-delay: ${index * 0.05}s">
+      <div class="badge-3d">✨ Spesial</div>
+      <img src="${product.image}?auto=format&fit=crop&w=500&q=80" alt="${product.name}" loading="lazy">
+      <div class="card-content">
+        <h3>${product.name}</h3>
+        <p class="price">Rp ${product.price.toLocaleString()}</p>
+        
+        <div class="qty-control" onclick="event.stopPropagation()">
+          <button onclick="changeQty(this, -1, event)" aria-label="Kurangi jumlah"><i class="fas fa-minus"></i></button>
+          <span>1</span>
+          <button onclick="changeQty(this, 1, event)" aria-label="Tambah jumlah"><i class="fas fa-plus"></i></button>
+        </div>
+        
+        <button class="add-cart" onclick="addToCart('${product.name}', ${product.price}, this, event)" aria-label="Tambah ke keranjang">
+          <i class="fas fa-cart-plus"></i> <span class="btn-text">Tambah</span>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ========== KERANJANG ==========
+let cart = [];
+
+window.onload = function() {
+  renderProducts();
+  loadCart();
+};
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+  // Prevent body scroll when cart is open on mobile
+  if(document.getElementById("cart").classList.contains("active")){
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+}
+
+function changeQty(btn, amount, event){
+  if(event) event.stopPropagation();
+  let span = btn.parentElement.querySelector("span");
+  let qty = parseInt(span.innerText);
+  qty += amount;
+  if(qty < 1) qty = 1;
+  span.innerText = qty;
+}
+
+function addToCart(name, price, btn, event){
+  if(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  
+  let qty = parseInt(btn.parentElement.querySelector("span").innerText);
+  
+  let existingItem = cart.find(item => item.name === name);
+  
+  if(existingItem) {
+    existingItem.qty += qty;
+  } else {
+    cart.push({name, price, qty});
+  }
+  
+  updateCart();
+  btn.parentElement.querySelector("span").innerText = "1";
+  showNotification(name + " ditambahkan!");
+  
+  // Animasi button
+  btn.style.transform = "scale(0.95)";
+  setTimeout(() => {
+    btn.style.transform = "scale(1)";
+  }, 200);
+}
+
+function updateCart(){
+  let cartItems = document.getElementById("cartItems");
+  let total = 0;
+  
+  if(cart.length === 0) {
+    cartItems.innerHTML = '<div class="empty-cart">Keranjang masih kosong</div>';
+  } else {
+    cartItems.innerHTML = "";
+    
+    cart.forEach((item, index) => {
+      let subtotal = item.price * item.qty;
+      total += subtotal;
+      
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+            <div style="flex:1">
+              <strong style="font-size:clamp(14px,3.5vw,16px)">${item.name}</strong><br>
+              <small style="font-size:clamp(12px,3vw,14px)">Rp ${item.price.toLocaleString()} x ${item.qty}</small>
+            </div>
+            <div style="text-align:right">
+              <div><strong style="font-size:clamp(14px,3.5vw,16px)">Rp ${subtotal.toLocaleString()}</strong></div>
+              <button onclick="removeFromCart(${index})" style="background:#f44336; color:white; border:none; border-radius:50%; width:35px; height:35px; cursor:pointer; margin-top:5px; font-size:18px" aria-label="Hapus item">×</button>
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+  
+  document.getElementById("totalPrice").innerText = total.toLocaleString();
+  document.getElementById("cartCount").innerText = cart.length;
+  saveCart();
+}
+
+function removeFromCart(index){
+  cart.splice(index, 1);
+  updateCart();
+  showNotification("Item dihapus");
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem('3hCart', JSON.stringify(cart));
+  } catch(e) {
+    console.log('LocalStorage not available');
+  }
+}
+
+function loadCart() {
+  try {
+    let savedCart = localStorage.getItem('3hCart');
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+      updateCart();
+    }
+  } catch(e) {
+    console.log('Failed to load cart');
+  }
+}
+
+function showNotification(message) {
+  let notification = document.createElement('div');
+  notification.innerHTML = message;
+  notification.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(102,126,234,0.5);
+    z-index: 3000;
+    animation: slideUp 0.3s ease;
+    font-weight: 600;
+    font-size: clamp(14px, 3.5vw, 16px);
+    white-space: nowrap;
+    max-width: 90%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  `;
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.remove();
+  }, 2000);
+}
+
+function validateCheckout() {
+  let nama = document.getElementById("nama").value.trim();
+  let noHp = document.getElementById("noHp").value.trim();
+  let alamat = document.getElementById("alamat").value.trim();
+
+  if(cart.length === 0){
+    alert("Keranjang masih kosong!");
+    return false;
+  }
+
+  if(nama === "" || noHp === "" || alamat === ""){
+    alert("Semua field wajib diisi!");
+    return false;
+  }
+
+  return true;
+}
+
+function processOrder() {
+  if(!validateCheckout()) return;
+
+  let nama = document.getElementById("nama").value.trim();
+  let noHp = document.getElementById("noHp").value.trim();
+  let alamat = document.getElementById("alamat").value.trim();
+  let catatan = document.getElementById("catatan").value.trim();
+
+  let total = 0;
+  let pesanProduk = "";
+  
+  cart.forEach(item => {
+    let subtotal = item.price * item.qty;
+    total += subtotal;
+    pesanProduk += `• ${item.name} x${item.qty} = Rp ${subtotal.toLocaleString()}\n`;
+  });
+
+  let message = `Halo 3H DONAT & BAKERY 3D 🍩\n\n*DATA PELANGGAN*\nNama: ${nama}\nNo HP: ${noHp}\nAlamat: ${alamat}\n\n*PESANAN SAYA:*\n${pesanProduk}\n*Total: Rp ${total.toLocaleString()}*\n\n*Catatan:*\n${catatan || "-"}`;
+
+  let phone = "6285249447820";
+  let waURL = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+  
+  // Buka WhatsApp di tab baru
+  window.open(waURL, '_blank');
+
+  let statusDiv = document.getElementById("saveStatus");
+  statusDiv.innerHTML = '⏳ Menyimpan...';
+  statusDiv.style.background = '#e3f2fd';
+  
+  // Reset cart
+  cart = [];
+  updateCart();
+  
+  document.getElementById("nama").value = "";
+  document.getElementById("noHp").value = "";
+  document.getElementById("alamat").value = "";
+  document.getElementById("catatan").value = "";
+  
+  statusDiv.innerHTML = "✅ Pesanan diproses!";
+  statusDiv.style.background = '#4CAF50';
+  statusDiv.style.color = 'white';
+  
+  setTimeout(() => {
+    document.getElementById("cart").classList.remove("active");
+    document.body.style.overflow = "auto";
+    statusDiv.innerHTML = "";
+  }, 3000);
+}
+
+// Close cart when clicking outside on mobile
+document.addEventListener('click', function(event) {
+  const cart = document.getElementById('cart');
+  const navButton = document.querySelector('nav button');
+  
+  if(cart.classList.contains('active') && 
+     !cart.contains(event.target) && 
+     !navButton.contains(event.target)) {
+    toggleCart();
+  }
+});
+
+// Prevent zoom on double tap for better mobile experience
+document.addEventListener('touchstart', (e) => {
+  if (e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</body>
+</html>
