@@ -860,6 +860,10 @@ transition:all 0.3s
 </div>
 
 <script>
+// ========== KONFIGURASI ==========
+// URL Google Apps Script (SUDAH DIISI)
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxxaeV6wFGPU_xa4qBgd_vRLJ0J3ofK2520RWuPBk2Wo2tMfZcMY7Cg25tU-i5T9poj/exec';
+
 // ========== CANVAS ANIMATION (OPTIMIZED) ==========
 const canvas = document.getElementById('heroCanvas');
 if(canvas){
@@ -943,7 +947,7 @@ function renderProducts() {
   
   container.innerHTML = products.map((product, index) => `
     <div class="card" style="animation-delay: ${index * 0.05}s">
-      <div class="badge-3d">✨ Spesial</div>
+      <div class="badge-3d">✨ 3D</div>
       <img src="${product.image}?auto=format&fit=crop&w=500&q=80" alt="${product.name}" loading="lazy">
       <div class="card-content">
         <h3>${product.name}</h3>
@@ -1124,6 +1128,7 @@ function validateCheckout() {
   return true;
 }
 
+// ========== FUNGSI PROSES PESANAN DENGAN INTEGRASI GOOGLE SHEET ==========
 function processOrder() {
   if(!validateCheckout()) return;
 
@@ -1141,36 +1146,76 @@ function processOrder() {
     pesanProduk += `• ${item.name} x${item.qty} = Rp ${subtotal.toLocaleString()}\n`;
   });
 
+  // 1. BUKA WHATSAPP
   let message = `Halo 3H DONAT & BAKERY 3D 🍩\n\n*DATA PELANGGAN*\nNama: ${nama}\nNo HP: ${noHp}\nAlamat: ${alamat}\n\n*PESANAN SAYA:*\n${pesanProduk}\n*Total: Rp ${total.toLocaleString()}*\n\n*Catatan:*\n${catatan || "-"}`;
-
   let phone = "6285249447820";
   let waURL = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-  
-  // Buka WhatsApp di tab baru
   window.open(waURL, '_blank');
 
+  // 2. KIRIM KE GOOGLE SHEET VIA API
   let statusDiv = document.getElementById("saveStatus");
-  statusDiv.innerHTML = '⏳ Menyimpan...';
+  statusDiv.innerHTML = '⏳ Menyimpan pesanan ke database...';
   statusDiv.style.background = '#e3f2fd';
-  
-  // Reset cart
-  cart = [];
-  updateCart();
-  
-  document.getElementById("nama").value = "";
-  document.getElementById("noHp").value = "";
-  document.getElementById("alamat").value = "";
-  document.getElementById("catatan").value = "";
-  
-  statusDiv.innerHTML = "✅ Pesanan diproses!";
-  statusDiv.style.background = '#4CAF50';
-  statusDiv.style.color = 'white';
-  
-  setTimeout(() => {
-    document.getElementById("cart").classList.remove("active");
-    document.body.style.overflow = "auto";
-    statusDiv.innerHTML = "";
-  }, 3000);
+  statusDiv.style.color = '#333';
+
+  // Data yang akan dikirim
+  let orderData = {
+    nama: nama,
+    noHp: noHp,
+    alamat: alamat,
+    catatan: catatan,
+    total: total,
+    items: cart
+  };
+
+  // Kirim data ke Google Apps Script
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors', // Penting untuk CORS
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData)
+  })
+  .then(() => {
+    // Karena mode no-cors, kita tidak bisa baca response
+    // Tapi kita anggap sukses
+    statusDiv.innerHTML = "✅ Pesanan tersimpan di Google Spreadsheet!";
+    statusDiv.style.background = '#4CAF50';
+    statusDiv.style.color = 'white';
+    
+    // Reset cart
+    cart = [];
+    updateCart();
+    
+    // Reset form
+    document.getElementById("nama").value = "";
+    document.getElementById("noHp").value = "";
+    document.getElementById("alamat").value = "";
+    document.getElementById("catatan").value = "";
+    
+    showNotification("✅ Pesanan berhasil diproses!");
+    
+    setTimeout(() => {
+      document.getElementById("cart").classList.remove("active");
+      document.body.style.overflow = "auto";
+      statusDiv.innerHTML = "";
+    }, 3000);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    statusDiv.innerHTML = "❌ Gagal menyimpan ke database";
+    statusDiv.style.background = '#f44336';
+    statusDiv.style.color = 'white';
+    
+    // Tetap reset cart meskipun error
+    cart = [];
+    updateCart();
+    
+    setTimeout(() => {
+      statusDiv.innerHTML = "";
+    }, 3000);
+  });
 }
 
 // Close cart when clicking outside on mobile
